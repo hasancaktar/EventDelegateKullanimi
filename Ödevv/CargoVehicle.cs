@@ -6,66 +6,34 @@ using System.Threading.Tasks;
 
 namespace Ödevv
 {
-
-    public delegate void SpeedHandler();
     public class CargoVehicle
     {
-
-
-
-
-       
-        public int _hizz;
+        public int Hiz;
 
         public CargoVehicle()
         {
-            _hizz = hiz;
-            //void Hiiz()
-            //{
-                
-            //}
-            
-
+            Hiz = Speed;
         }
 
-        public event SpeedHandler SpeedExceeded;
-        public DateTime DateTime { get; set; }
-        public string Marka { get; set; }
-        public string plaka { get ; set  ; }
-        public int hiz
-
+        public CargoVehicle(string plate)
         {
-            get { return _hizz;}
+            this.Plaka = plate;
+        }
+
+        public delegate void SpeedHandler(CargoVehicle vehicle);
+        public event SpeedHandler SpeedExceeded;
+
+        public string Marka { get; set; }
+        public string Plaka { get; set; }
+        public int Speed
+        {
+            get { return Hiz; }
             set
             {
-                
-                _hizz = value;
+                Hiz = value;
                 if (value >= 110 && SpeedExceeded != null)
-                {
-
-                    SpeedExceeded();
-                    
-
-                }
-                   
-                
+                    SpeedExceeded(this);
             }
         }
-        
-
-        
     }
 }
-
-
-/*
- get { return _hizz;}
-            set
-            {
-                _hizz=value;
-                if (value<=85 &&SpeedExceeded!=null)
-                {
-                    SpeedExceeded();
-                }
-            }
- */
